@@ -5,14 +5,14 @@
 
 <generatorConfiguration>
 <!--    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
-<!--    connectionURL="jdbc:mysql://localhost:3306/xiaohei?serverTimezone=Asia/Shanghai"-->
+<!--    connectionURL="jdbc:mysql://110.42.132.132:3306/xiaohei?serverTimezone=Asia/Shanghai"-->
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/xiaohei?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false"
+                        connectionURL="jdbc:mysql://110.42.132.132:3306/xiaohei?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false"
                         userId="root"
-                        password="admin">
+                        password="123456">
         </jdbcConnection>
 
         <javaTypeResolver >
