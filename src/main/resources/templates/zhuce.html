@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <link rel="stylesheet" type="text/css" href="css1/login.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
-
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
     <script src="js/jquery-3.5.1.min.js" ></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="js/community.js" type="application/javascript"></script>
+    <script src="js/moment.js" type="application/javascript"></script>
 
     <script type="text/javascript">
-
+        //@PathVariable(name = "code") String code
         $(function(){
             $("#username").change(function(){
                 // $.get("user","username="+this.value+"&method=check",function(data){
-                $.get("user","username="+this.value+"&method=check",function(data){
+                $.get("/r","username="+this.value+"&method=r",function(data){
                     if(data==1){
                         $("#usernameMsg").html("用户名已经存在").css("color","red");
                         $("#registerBtn").attr("disabled",true);
@@ -133,7 +131,7 @@
 </script>
 
 <div class="regist">
-    <div class="regist_center">
+    <div class="regist_center" style="width: 870px;margin: 35px auto;" >
         <div class="regist_top">
             <div class="left fl"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;注册</div>
 <!--            <div class="right fr">-->
@@ -233,7 +231,7 @@
 
                 <div class="r-wrap J-wxArea">
                     <div class="r-content">
-                        <div class="m-mod m-outside">
+                        <div class="m-mod m-outside" style="margin-left: 600px;">
                             <div class="regist-form-tit"><span>其他注册方式&gt;&gt;</span></div>
                             <div class="r-icon-list">
                                 <a  th:href="@{https://github.com/login/oauth/authorize(client_id='a65503a4e5242623c038',
@@ -250,6 +248,6 @@
         </div>
     </div>
 </div>
-
+<div th:insert="~{footer::foot}" style="margin-top: 170px;"></div>
 </body>
 </html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html";charset="UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
+    <script src="js/jquery-3.5.1.min.js" ></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="js/community.js" type="application/javascript"></script>
+    <script src="js/moment.js" type="application/javascript"></script>
+    <title>登录</title>
+
+<!--    <script>-->
+<!--        // $(function(){-->
+<!--        //     $("#s").click(function(){-->
+<!--        //         var ins=$("#ins").val();-->
+<!--        //         $.ajax({-->
+<!--        //             url:"/r",//要请求的服务器url-->
+<!--        //             data:{ins:ins},//第一个name对应的是后端request.getParameter("name")的name、第二个name对应的是此js中的var name = $("#name").val();的name-->
+<!--        //             async:true,//是否是异步请求-->
+<!--        //             cache:false,//是否缓存结果-->
+<!--        //             type:"POST",//请求方式-->
+<!--        //             dataType:"text",//服务器返回什么类型数据 text xml javascript json(javascript对象)-->
+<!--        //             success:function(result){//函数会在服务器执行成功后执行，result就是服务器返回结果-->
+<!--        //                 console.log(result);-->
+<!--        //                 $("#re").html(result);-->
+<!--        //             },-->
+<!--        //             error:function(jqXHR, textStatus, errorThrown) {-->
+<!--        //-->
+<!--        //             }-->
+<!--        //         });-->
+<!--        //     });-->
+<!--        // });-->
+
+
+<!--        $(function(){-->
+<!--            $("#cd").change(function(){-->
+<!--                //var ins=$("#ins").val();-->
+
+<!--                var  ua=document.getElementById("ua").value;-->
+<!--                var  pd=document.getElementById("pd").value;-->
+<!--                var  cd=document.getElementById("cd").value;-->
+<!--                var  auto=document.getElementById("autoLogin").value;-->
+<!--                var ins = document.getElementById("code_box").innerHTML;-->
+<!--                $.ajax({-->
+<!--                    url:"/log",//要请求的服务器url-->
+<!--                    data:{ins:ins,ua:ua,pd:pd,cd:cd,auto:auto},//第一个name对应的是后端request.getParameter("name")的name、第二个name对应的是此js中的var name = $("#name").val();的name-->
+<!--                    async:true,//是否是异步请求-->
+<!--                    cache:false,//是否缓存结果-->
+<!--                    type:"POST",//请求方式-->
+<!--                    dataType:"text",//服务器返回什么类型数据 text xml javascript json(javascript对象)-->
+<!--                    success:function(result){//函数会在服务器执行成功后执行，result就是服务器返回结果-->
+<!--                        //alert(result);-->
+<!--                        console.log(result);-->
+<!--                       // $("#re").html(result);-->
+<!--                    },-->
+<!--                    error:function(jqXHR, textStatus, errorThrown) {-->
+
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+</head>
+<body>
+
+<!--<h1>我是html页面</h1>-->
+
+<!--<input type="text" id="ins" />-->
+
+<!--<button id="s">发起ajax</button>-->
+<!--<span id="re"></span>-->
+
+<!--<div id="code_box">Af3D</div>-->
+<div style="width:100%;text-align:center;margin-top:250px">
+    <form      method="post"  id="lll"  action="/log">
+        <div class="input-group"    style="width:260px;margin: auto"    >
+            <span class="input-group-addon" id="basic-addon1">用户名</span>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"  name="uname"    id="ua">
+        </div>
+        <div class="input-group"    style="width:260px;margin: auto;margin-top: 5px">
+            <span class="input-group-addon" id="basic-addon2">密&emsp;码</span>
+            <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1"  name="password"    id="pd">
+        </div>
+        <div class="input-group"    style="width:260px;margin: auto;margin-top: 5px">
+            <span class="input-group-addon" id="basic-addon3">验证码</span>
+            <input type="text" class="form-control" placeholder="验证码" aria-describedby="basic-addon1"  name="code"    id="cd"  >
+        </div>
+        <span   id="msg"    style="font-size: 12px;color: #e01810"></span><br>
+        <div id="code_box" style="color:#000dff;weight:160px;height: 30px;margin: auto" >Af3D</div>
+        <input  class="form-control"  aria-describedby="basic-addon1"  name="code1"    id="code" type="hidden">
+        <script type="text/javascript">
+            var code_box = document.getElementById("code_box");
+            document.getElementById("code").value=code_box.innerHTML;
+
+
+            // function a1() {
+            //         $.ajax({
+            //             url: "http://localhost:8088/log ",
+            //             data:{"code1":$("#code_box").innerHTML},
+            //             sucess:function (data) {
+            //                     alert(data)
+            //                 console.log(data)
+            //             }
+            //             });
+            // }
+
+
+            function refreshCode() {
+
+                //62个字符 随机选择4位
+                var code = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM',
+                    char = '',
+                    result = '';
+
+                for (var i = 0; i < 4; i++) {
+
+                    //随机选择一位  （0,61） 写出0到61的随机的索引数字
+                    var code_index = Math.round(Math.random()*61);
+                    //得到随机的索引  取出随机地字符
+                    var char = code[code_index];
+                    //随机取出的字符 存在几个相同重复的问题 ，而且对于字母，不能区分大小写。
+                    // 避免重复的思路是：取出字符之后,和最后的result对比一下，看看里边是不是已经存在了，如果存在本次循环就终止，进行下一次
+                    if (result.toUpperCase().indexOf(char.toUpperCase()) > -1)
+                        //indexOf() == -1 说明结果里边没有要找的字符 那么 > -1 就是 里边有重复的字符
+                    {
+                        i --;
+                        //为什么会 --？ 因为如果条件成立，那么本轮循环就结束进行下一轮循环（自然i就加1了），那么本轮本应该取出的字符就没有了
+                        //到最后会少一个字符 缺席
+                        continue;//终止本轮循环 进行下一轮
+                    }
+                    result += char;
+                }
+                code_box.innerHTML = result;
+
+                document.getElementById("code").value=result
+                // var  a=document.getElementById("code").valueOf();
+                // alert(a);
+
+                $.ajax({
+                    type: "get", // 以get方式发起请求
+                    url: "/login?code=" + yourData, // 将你的请求参数以问号拼接到url中进行参数传递
+                    success(data) {
+                        var  yourData=document.getElementById("code_box");
+                        return yourData;
+                        // data为返回值
+                        // 成功后的回调方法
+                    }
+                })
+            }
+            //点击事件
+            code_box.onclick = refreshCode;
+        </script>
+
+        <a  href="/zhuce">
+            <button type="button"  class="btn btn-default"   id="log"  value="submit"  >
+                注册
+            </button>
+        </a>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <a><button type="button"  class="btn btn-default"   id="login">登录</button></a>
+        <script >
+            $("#login").click(function clickLogin() {
+
+
+                    var uname=$("#ua").val();
+                    var password=$("#pd").val();
+                    var code=$("#cd").val();
+                    if(isempty(uname)){
+                        $("#msg").html("用户名不能为空!");
+                        return;
+                    }
+                    if(isempty(password)){
+                        $("#msg").html("密码不能为空!");
+                        return;
+                    }
+                if(isempty(code)){
+                    $("#msg").html("验证码不能为空!");
+                    return;
+                }
+                    $("#lll").submit();
+
+                }
+            )
+            function isempty(str) {
+                if(str==null||str.trim()==""){
+                    return  true;
+                }
+                return false;
+            }
+        </script>
+    </form>
+</div>
+<div th:insert="~{footer::foot}" style="margin-top: 150px;"></div>
+</body>
+</html>
