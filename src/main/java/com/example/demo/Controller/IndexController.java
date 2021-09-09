@@ -114,7 +114,8 @@ public class IndexController {
             return "error";
         }else {
             //session.setAttribute("userall",user);
-            response.addCookie(new Cookie("token",token));
+            session.setAttribute("token",token);
+//             response.addCookie(new Cookie("token",token));
             return "registerSuccess";
         }
     }
@@ -126,6 +127,7 @@ public class IndexController {
                           HttpServletRequest request,
                           HttpServletResponse response) throws SQLException {
         //String codes=request.getParameter("c");
+        HttpSession session=request.getSession();
         String c= Base64Utils.decode(code);
         //String c= String.valueOf(Base64Utils.decodeFromString(request.getParameter("c")));
         Integer i=userService.selectCode(c);
@@ -133,6 +135,8 @@ public class IndexController {
             request.setAttribute("msg","激活失败！");
             // return Constants.FORWARD+"/message.jsp";
         }else if(i==1){
+            String token= (String) session.getAttribute("token");
+            response.addCookie(new Cookie("token",token));
             request.setAttribute("msg","激活成功！");
             // return Constants.FORWARD+"/message.jsp";
         }else {
